@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 880px) {
-  .profile-container {
+  .profile__container {
     flex-direction: column;
     margin: 0 auto;
     width: 282px;
