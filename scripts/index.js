@@ -17,13 +17,13 @@ function handleFormSubmite(evt) {
 
 
 const openPopup = function() {
-    popupElement.classList.add('popup_is_opened');
+    popupElement.classList.add('popup_opened');
     userName.value = profileTitle.textContent;
     userOccupation.value = profileSubtitle.textContent;
 }
 
 const closePopup = function() {
-    popupElement.classList.remove('popup_is_opened');
+    popupElement.classList.remove('popup_opened');
 }
 
 const closePopupByClickOnOverlay = function(event) {
