@@ -14,11 +14,10 @@
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="логотип-место-россия">
     </header>
-    <hr class="line-under-header">
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img src="./images/image.jpg" alt="аватар-профиля" class="profile__avatar">
+          <img src="./images/image.jpg" alt="аватар-профиля" class="profile__avatar"  aria-label="Кнопка-добавления">
           <div class="profile__user-information">
             <div class="profile__title-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -35,42 +34,42 @@
             <img class="card__image" src="./images/karachaevsk.jpg" alt="Карчаевск">
             <div class="card__description">
               <h2 class="card__title">Карачаевск</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/mount-elbrus.png" alt="Эльбрус">
             <div class="card__description">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/dombay.png" alt="Домбай">
             <div class="card__description">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>  
           </li>
           <li class="card">
             <img class="card__image" src="./images/mount-elbrus.png" alt="Эльбрус">
             <div class="card__description">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>  
           </li>
           <li class="card">
             <img class="card__image" src="./images/dombay.png" alt="Домбай">
             <div class="card__description">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>  
           </li>
           <li class="card">
             <img class="card__image" src="./images/karachaevsk.jpg" alt="Карчаевск">
             <div class="card__description">
               <h2 class="card__title">Карачаево-Черкесия</h2>
-              <button class="card__like-button"></button>
+              <button class="card__like-button" type="button"></button>
             </div>  
           </li>
         </ul>
@@ -81,11 +80,11 @@
     </footer>
     </div>
     <!--POPUP-->
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__input-list" novalidate>
+        <form name="popup-edit-form" class="popup__input-list" novalidate>
           <label class="popup__field">
             <input id="name-input" name="userName" class="popup__input" type="text" placeholder="Имя"
             minlength="2" maxlength="40" required>
@@ -97,7 +96,7 @@
           <button class="popup__save-buttom" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 

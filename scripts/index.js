@@ -11,9 +11,6 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 
 // Обработчик «отправки» формы
 
-function handleFormSubmite(evt) {
-    evt.preventDefault();
-}
 
 
 const openPopup = function() {
@@ -26,39 +23,34 @@ const closePopup = function() {
     popupElement.classList.remove('popup_opened');
 }
 
-const closePopupByClickOnOverlay = function(event) {
+//закрытие попапа без кнопки
+/*const closePopupByClickOnOverlay = function(event) {
     if(event.target !== event.currentTarget){
         return;
     } 
     closePopup();
-}
-
-//Вызов собития 
-
-popupEditButtonElement.addEventListener('click', openPopup);
-popupCloseButtonElement.addEventListener('click', closePopup);
-popupElement.addEventListener('click', closePopupByClickOnOverlay)
+}*/
 
 // Работаем с input 
-document.querySelector('.popup__save-buttom').addEventListener('click', saveDataAboutUser,);
-
 
 
 function saveDataAboutUser(evt){
     evt.preventDefault();
-    console.log('i am clicking on bottom');
-    let inputInformation = document.querySelector('#name-input').value;
-    let inputAbout = document.querySelector('#about-input').value;
+    let inputInformation = userName.value;
+    let inputAbout = userOccupation.value;
     console.log(inputInformation);
-    document.querySelector('.profile__title').innerHTML = inputInformation;
-    document.querySelector('.profile__subtitle').innerHTML = inputAbout;
+    document.querySelector('.profile__title').textContent = inputInformation;
+    document.querySelector('.profile__subtitle').textContent = inputAbout;
 
     closePopup();
 
 }
 
-formElement.addEventListener('submit', formElement);
-
+//Вызов собития 
+formElement.addEventListener('submit', saveDataAboutUser);
+popupEditButtonElement.addEventListener('click', openPopup);
+popupCloseButtonElement.addEventListener('click', closePopup);
+//popupElement.addEventListener('click', closePopupByClickOnOverlay);
 
 
 

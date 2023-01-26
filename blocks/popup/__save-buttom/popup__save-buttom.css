@@ -12,6 +12,8 @@
   margin-bottom: 37px;
   margin-top: 22px;
   cursor: pointer;
+  border-radius: 2px;
+  border: none;
 }
 
 .popup__save-buttom:hover {
@@ -20,11 +22,10 @@
 
 @media screen and (max-width: 600px) {
   .popup__save-buttom {
-    margin-top: 12px;
-    margin-bottom: 25px;
+    margin-top: 18px;
+    margin-bottom: 22px;
     max-width: 238px;
     min-height: 46px;
-    font-family: 'Inter';
     font-size: 14px;
   }
 }
