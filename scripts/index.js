@@ -36,11 +36,8 @@ const closePopup = function() {
 
 function saveDataAboutUser(evt){
     evt.preventDefault();
-    let inputInformation = userName.value;
-    let inputAbout = userOccupation.value;
-    console.log(inputInformation);
-    document.querySelector('.profile__title').textContent = inputInformation;
-    document.querySelector('.profile__subtitle').textContent = inputAbout;
+    profileTitle.textContent = userName.value;
+    profileSubtitle.textContent = userOccupation.value;
 
     closePopup();
 
