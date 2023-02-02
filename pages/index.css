@@ -20,6 +20,7 @@
 @import url(../blocks/card/__description/card__description.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__like-button/card__like-button.css);
+@import url(../blocks/card/__like-button/_active/card__like-button_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__caption/footer__caption.css);
 @import url(../blocks/popup/popup.css);
@@ -31,3 +32,20 @@
 @import url(../blocks/popup/__save-buttom/popup__save-buttom.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+.card__trash-button{
+    background-image: url(../images/trash.svg);
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 19px;
+    width: 18px;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.card__trash-button:hover{
+    opacity: .6 ;
+}
