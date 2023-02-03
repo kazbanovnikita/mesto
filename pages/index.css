@@ -32,20 +32,11 @@
 @import url(../blocks/popup/__save-buttom/popup__save-buttom.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/card/__trash-button/card__trash-button.css);
+@import url(../blocks/popup/_type_image/popup_type_image.css);
+@import url(../blocks/popup/__container/_type_image/popup__cotainer_type_image.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__figcaption/popup__figcaption.css);
+@import url(../blocks/popup/__close-button/_type_image/popup__close-button_type_image.css);
 
-.card__trash-button{
-    background-image: url(../images/trash.svg);
-    background-color: transparent;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    height: 19px;
-    width: 18px;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-}
 
-.card__trash-button:hover{
-    opacity: .6 ;
-}

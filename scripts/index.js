@@ -2,6 +2,7 @@ const formElement = document.querySelector('.popup__input-list');
 const formAddingCardElement = document.querySelector('[name="popup-adding-cards-form"]');
 const popupElement = document.querySelector('.popup');
 const addingPopupElement = document.querySelector('.popup_type_cards');
+const imagePopupElement = document.querySelector('.popup_type_image')
 const popupCloseButtonsElement = document.querySelectorAll('.popup__close-button');
 const popupEditButtonElement = document.querySelector('.profile__edit-button');
 const popupAddButtonElement = document.querySelector('.profile__add-button')
@@ -12,6 +13,8 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const templateCards = document.querySelector('.template-cards');
 const inputCardName = document.querySelector('#place-input');
 const inputCardLink = document.querySelector('#url-input');
+const hugeImage = document.querySelector('.popup__image');
+const captionHugeImage = document.querySelector('.popup__figcaption');
 
 // массив с обязательными карточкам 
  const initialCards = [
@@ -60,6 +63,14 @@ const createNewCard = (item) => {
         card.remove()
     });
 
+    //open big popup
+    card.querySelector('.card__image').addEventListener('click', () => {
+        openImagePopup();
+        hugeImage.src = item.link;;
+        captionHugeImage.textContent =item.name;
+        hugeImage.alt= item.name;
+    })
+
     return card;
 }
 
@@ -82,6 +93,8 @@ function handleFormAddingCards(evt) {
 
 formAddingCardElement.addEventListener('submit', handleFormAddingCards)
 
+///
+
 
 
 
@@ -98,10 +111,19 @@ const openPopup = function() {
 
 const openAddingPopup =function(){
     addingPopupElement.classList.add('popup_opened');
+    
 }
 
+const openImagePopup = function(){
+    imagePopupElement.classList.add('popup_opened');
+}
+
+
 popupEditButtonElement.addEventListener('click', openPopup);
-popupAddButtonElement.addEventListener('click', openAddingPopup);
+popupAddButtonElement.addEventListener('click', () => {
+    formAddingCardElement.reset();
+    openAddingPopup();
+});
 
 // закрытие попов 
 
@@ -122,7 +144,7 @@ function saveDataAboutUser(evt){
     profileTitle.textContent = userName.value;
     profileSubtitle.textContent = userOccupation.value;
 
-    closePopup();
+    closePopup(popupElement);
 
 }
 
@@ -140,8 +162,3 @@ const closePopupByClickOnOverlay = function(event) {
 */
 
 //popupElement.addEventListener('click', closePopupByClickOnOverlay);
-
-
-
-
-
