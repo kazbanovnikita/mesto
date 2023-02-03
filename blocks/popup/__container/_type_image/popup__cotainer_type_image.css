@@ -1,18 +1,7 @@
 .popup__container_type_image{
     background-color: transparent;
-    min-width: 75vw;
-    max-height: 75vh;
-    display: flex;
-    align-self: center;
-    justify-content: center;
+    width: auto;
     flex-direction: column;
     box-shadow: none;
     position: relative;
 }
-
-@media screen and (max-width: 400px) {
-    .popup__container_type_image {
-      max-width: 80vw;
-      max-height: 50vh;
-    }
-  }

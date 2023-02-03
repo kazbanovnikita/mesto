@@ -1,6 +1,6 @@
-const formElement = document.querySelector('.popup__input-list');
+const formUserInfoElement = document.querySelector('.popup__input-list');
 const formAddingCardElement = document.querySelector('[name="popup-adding-cards-form"]');
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('.popup_user_info');
 const addingPopupElement = document.querySelector('.popup_type_cards');
 const imagePopupElement = document.querySelector('.popup_type_image')
 const popupCloseButtonsElement = document.querySelectorAll('.popup__close-button');
@@ -148,7 +148,7 @@ function saveDataAboutUser(evt){
 
 }
 
-formElement.addEventListener('submit', saveDataAboutUser);
+formUserInfoElement.addEventListener('submit', saveDataAboutUser);
 
 
 
