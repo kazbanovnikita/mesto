@@ -45,12 +45,16 @@ const captionHugeImage = document.querySelector('.popup__figcaption');
 
   ]; 
  //создаем карточки из массива  
-const cardsList = document.querySelector('.cards__list');
-const createNewCard = (item) => {
-    const card = templateCards.content.querySelector('.card').cloneNode(true);
-    card.querySelector('.card__title').textContent = item.name;
-    card.querySelector('.card__image').src = item.link;
-    card.querySelector('.card__image').alt = item.name;
+ const cardsList = document.querySelector('.cards__list'); 
+
+ const createNewCard = (item) => { 
+ 
+     const card = templateCards.content.querySelector('.card').cloneNode(true); 
+     const cardImage = card.querySelector('.card__image');
+     const cardTitle = card.querySelector('.card__title')
+     cardTitle.textContent = item.name;
+     cardImage.src = item.link; 
+     cardImage.alt = item.name;
 
     //кнопка like 
     card.querySelector('.card__like-button').addEventListener('click', (evt) => {
@@ -65,7 +69,7 @@ const createNewCard = (item) => {
 
     //open big popup
     card.querySelector('.card__image').addEventListener('click', () => {
-        openImagePopup();
+        openPopup(imagePopupElement);
         hugeImage.src = item.link;;
         captionHugeImage.textContent =item.name;
         hugeImage.alt= item.name;
@@ -103,26 +107,20 @@ formAddingCardElement.addEventListener('submit', handleFormAddingCards)
 ///////////////////////
 // открытие попапов
 
-const openPopup = function() {
-    popupElement.classList.add('popup_opened');
+function openPopup (popup) {
+    popup.classList.add('popup_opened');
+}
+
+
+popupEditButtonElement.addEventListener('click', () => {
+    openPopup(popupElement);
     userName.value = profileTitle.textContent;
     userOccupation.value = profileSubtitle.textContent;
-}
+});
 
-const openAddingPopup =function(){
-    addingPopupElement.classList.add('popup_opened');
-    
-}
-
-const openImagePopup = function(){
-    imagePopupElement.classList.add('popup_opened');
-}
-
-
-popupEditButtonElement.addEventListener('click', openPopup);
 popupAddButtonElement.addEventListener('click', () => {
     formAddingCardElement.reset();
-    openAddingPopup();
+    openPopup(addingPopupElement);
 });
 
 // закрытие попов 
