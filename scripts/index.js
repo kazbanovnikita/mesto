@@ -15,6 +15,7 @@ const inputCardName = document.querySelector('#place-input');
 const inputCardLink = document.querySelector('#url-input');
 const hugeImage = document.querySelector('.popup__image');
 const captionHugeImage = document.querySelector('.popup__figcaption');
+const allPopups = document.querySelectorAll('.popup');
 
 // массив с обязательными карточкам 
  const initialCards = [
@@ -68,7 +69,7 @@ const captionHugeImage = document.querySelector('.popup__figcaption');
     });
 
     //open big popup
-    card.querySelector('.card__image').addEventListener('click', () => {
+    cardImage.addEventListener('click', () => {
         openPopup(imagePopupElement);
         hugeImage.src = item.link;;
         captionHugeImage.textContent =item.name;
@@ -116,6 +117,8 @@ popupEditButtonElement.addEventListener('click', () => {
     openPopup(popupElement);
     userName.value = profileTitle.textContent;
     userOccupation.value = profileSubtitle.textContent;
+    const saveUserInfoButton = popupElement.querySelector('.popup__save-buttom');
+    saveUserInfoButton.classList.remove('popup__save-button_disabled')
 });
 
 popupAddButtonElement.addEventListener('click', () => {
@@ -135,6 +138,17 @@ popupCloseButtonsElement.forEach((button) => {
     });
 });
 
+// закрытие попов по esc 
+function closePopupByEscape(event){
+    if(event.key === 'Escape'){
+        const openedPopup = document.querySelector('.popup_opened');
+        openedPopup.classList.remove('popup_opened')
+    }
+}
+
+document.addEventListener('keydown', closePopupByEscape)
+
+
 // вывод на страницу из input 
 
 function saveDataAboutUser(evt){
@@ -150,13 +164,17 @@ formUserInfoElement.addEventListener('submit', saveDataAboutUser);
 
 
 
-/*//закрытие попапа без кнопки
-const closePopupByClickOnOverlay = function(event) {
-    if(event.target !== event.currentTarget){
-        return;
-    } 
-    closePopup();
-}
-*/
+// закритие попапов clickом по overlay
 
-//popupElement.addEventListener('click', closePopupByClickOnOverlay);
+const closePopupByClickOnOverlay = function() {
+    allPopups.forEach((popup) => {
+     popup.addEventListener('click', (event) =>{
+        if(event.target !== event.currentTarget){
+            return
+        } else {
+            closePopup(popup);
+        } 
+     })
+    })
+}
+closePopupByClickOnOverlay();

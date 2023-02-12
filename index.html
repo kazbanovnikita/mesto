@@ -54,12 +54,26 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="popup-edit-form" class="popup__input-list" novalidate>
           <label class="popup__field">
-            <input id="name-input" name="userName" class="popup__input" type="text" placeholder="Имя"
-            minlength="2" maxlength="40" required>
+            <input required
+            id="name-input"
+            name="userName"
+            class="popup__input"
+            type="text"
+            placeholder="Имя"
+            minlength="2" maxlength="40"
+            >
+            <span id="name-input-error" class="popup__input-error-massage"></span>
           </label>
           <label class="popup__field">
-            <input id="about-input" name="useAbout" class="popup__input" type="text" placeholder="О себе"
-            minlength="2" maxlength="300" required>
+            <input required
+            id="about-input"
+            name="useAbout"
+            class="popup__input"
+            type="text"
+            placeholder="О себе"
+            minlength="2" maxlength="200"
+            >
+            <span id="about-input-error" class="popup__input-error-massage"></span>
           </label>
           <button class="popup__save-buttom" type="submit">Сохранить</button>
         </form>
@@ -72,12 +86,25 @@
         <h3 class="popup__title">Новое место</h3>
         <form name="popup-adding-cards-form" class="popup__input-list" novalidate>
           <label class="popup__field">
-            <input id="place-input" name="userName" class="popup__input" type="text" placeholder="Название"
-            minlength="2" maxlength="40" required>
+            <input required
+            id="place-input"
+            name="userName"
+            class="popup__input"
+            type="text"
+            placeholder="Название"
+            minlength="2" maxlength="40"
+            >
+            <span id="place-input-error" class="popup__input-error-massage"></span>
           </label>
           <label class="popup__field">
-            <input id="url-input" name="useAbout" class="popup__input" type="text" placeholder="Ссылка на картинку"
-            minlength="2" maxlength="300" required>
+            <input required
+            id="url-input"
+            name="useAbout"
+            class="popup__input"
+            type="url"
+            placeholder="Ссылка на картинку"
+            >
+            <span id="url-input-error" class="popup__input-error-massage"></span>
           </label>
           <button class="popup__save-buttom" type="submit">Создать</button>
         </form>
@@ -92,6 +119,7 @@
       </figure>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
