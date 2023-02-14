@@ -16,7 +16,8 @@ const inputCardLink = document.querySelector('#url-input');
 const hugeImage = document.querySelector('.popup__image');
 const captionHugeImage = document.querySelector('.popup__figcaption');
 const allPopups = document.querySelectorAll('.popup');
-
+const saveUserInfoButton = popupElement.querySelector('.popup__save-buttom');
+const saveCardButton = addingPopupElement.querySelector('#save-card-button');
 // массив с обязательными карточкам 
  const initialCards = [
     {
@@ -110,6 +111,7 @@ formAddingCardElement.addEventListener('submit', handleFormAddingCards)
 
 function openPopup (popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEscape);
 }
 
 
@@ -117,19 +119,22 @@ popupEditButtonElement.addEventListener('click', () => {
     openPopup(popupElement);
     userName.value = profileTitle.textContent;
     userOccupation.value = profileSubtitle.textContent;
-    const saveUserInfoButton = popupElement.querySelector('.popup__save-buttom');
     saveUserInfoButton.classList.remove('popup__save-button_disabled')
+    saveUserInfoButton.disabled = true;
 });
 
 popupAddButtonElement.addEventListener('click', () => {
     formAddingCardElement.reset();
     openPopup(addingPopupElement);
+    saveCardButton.disabled = true;
+    saveCardButton.classList.add('popup__save-button_disabled')
 });
 
 // закрытие попов 
 
 const closePopup = function(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEscape);
 }
 
 popupCloseButtonsElement.forEach((button) => {
@@ -141,12 +146,12 @@ popupCloseButtonsElement.forEach((button) => {
 // закрытие попов по esc 
 function closePopupByEscape(event){
     if(event.key === 'Escape'){
-        const openedPopup = document.querySelector('.popup_opened');
-        openedPopup.classList.remove('popup_opened')
-    }
-}
+        allPopups.forEach((popup) => {
+            closePopup(popup)
+        })
+       }
+   }
 
-document.addEventListener('keydown', closePopupByEscape)
 
 
 // вывод на страницу из input 

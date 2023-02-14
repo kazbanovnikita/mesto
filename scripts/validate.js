@@ -43,9 +43,7 @@ function toggleButton(form, config){
     const isFormValid = form.checkValidity();
 
     buttonSubmit.disabled = !isFormValid;
-    buttonSubmit.classList.toggle('popup__save-button_disabled', !isFormValid)
-
-    console.log(isFormValid)
+    buttonSubmit.classList.toggle(config.buttonDisabledClass, !isFormValid)
 }
 
 function addInputListnener(form, config){
