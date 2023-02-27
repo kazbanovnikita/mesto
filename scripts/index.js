@@ -1,3 +1,6 @@
+import FormValidator from './Validate.js'
+import Card from './Card.js';
+
 const formUserInfoElement = document.querySelector('.popup__input-list');
 const formAddingCardElement = document.querySelector('[name="popup-adding-cards-form"]');
 const popupElement = document.querySelector('.popup_user_info');
@@ -18,6 +21,18 @@ const captionHugeImage = document.querySelector('.popup__figcaption');
 const allPopups = document.querySelectorAll('.popup');
 const saveUserInfoButton = popupElement.querySelector('.popup__save-buttom');
 const saveCardButton = addingPopupElement.querySelector('#save-card-button');
+const cardsList = document.querySelector('.cards__list'); 
+
+const formValidationConfig = {
+  formSelector: '.popup__input-list',
+  inputSelector: '.popup__input',
+  errorClass: 'popup__input_type-error',
+  buttonSelector: '.popup__save-buttom',
+  buttonDisabledClass: 'popup__save-button_disabled',
+};
+
+
+
 // массив с обязательными карточкам 
  const initialCards = [
     {
@@ -46,68 +61,40 @@ const saveCardButton = addingPopupElement.querySelector('#save-card-button');
     }
 
   ]; 
- //создаем карточки из массива  
- const cardsList = document.querySelector('.cards__list'); 
 
- const createNewCard = (item) => { 
- 
-     const card = templateCards.content.querySelector('.card').cloneNode(true); 
-     const cardImage = card.querySelector('.card__image');
-     const cardTitle = card.querySelector('.card__title')
-     cardTitle.textContent = item.name;
-     cardImage.src = item.link; 
-     cardImage.alt = item.name;
+  
 
-    //кнопка like 
-    card.querySelector('.card__like-button').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('card__like-button_active');
-   });
+// добавление дефолтных карточек
+  initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link, openBigPopup, templateCards);
+    const cardElement = card.createNewCard();
 
-    // кнопка delet 
-    const deletBtn = card.querySelector('.card__trash-button');
-    deletBtn.addEventListener('click', () => {
-        card.remove()
-    });
+    //adding in Dom
+    document.querySelector('.cards__list').append(cardElement)
+  })
 
-    //open big popup
-    cardImage.addEventListener('click', () => {
-        openPopup(imagePopupElement);
-        hugeImage.src = item.link;;
-        captionHugeImage.textContent =item.name;
-        hugeImage.alt= item.name;
-    })
-
-    return card;
-}
-
-const renderNewCard = (item) => {
-    cardsList.append(createNewCard(item));
-    
-}
-
-initialCards.forEach((item) => {
-    renderNewCard(item);
-}); 
-
-
-function handleFormAddingCards(evt) {
+  // создание новый карточек
+  function handleFormAddingCards(evt) {
     evt.preventDefault();
-    cardsList.prepend(createNewCard({name: inputCardName.value, link: inputCardLink.value}));
+    cardsList.
+    prepend(new Card(inputCardName.value, inputCardLink.value, openBigPopup, templateCards).
+    createNewCard());
 
     closePopup(addingPopupElement);
     };
 
 formAddingCardElement.addEventListener('submit', handleFormAddingCards)
 
-///
-
-
-
-
-
 
 ///////////////////////
 // открытие попапов
+
+function openBigPopup (itemName, itemLink) {
+  openPopup(imagePopupElement);
+  hugeImage.src = itemLink;
+  captionHugeImage.textContent = itemName;
+  hugeImage.alt = itemName;
+}
 
 function openPopup (popup) {
     popup.classList.add('popup_opened');
@@ -183,3 +170,13 @@ const closePopupByClickOnOverlay = function() {
     })
 }
 closePopupByClickOnOverlay();
+
+/// Валидация попапа с добавлением картчки 
+const addingCardValid = new FormValidator(formValidationConfig, formAddingCardElement)
+addingCardValid.enableValidation()
+addingCardValid.toggleButton(formAddingCardElement);
+
+/// Валидация попапа с информацией о юзере
+const profileUnfoValid = new FormValidator(formValidationConfig, formUserInfoElement)
+profileUnfoValid.enableValidation()
+profileUnfoValid.toggleButton(formUserInfoElement)
