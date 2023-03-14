@@ -1,5 +1,6 @@
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
 
 const formUserInfoElement = document.forms["popup-edit-form"];
 const formAddingCardElement = document.forms["popup-adding-cards-form"];
