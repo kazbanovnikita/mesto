@@ -1,10 +1,10 @@
-import PopupWithForm from "../scripts/PopupWithFrom.js";
-import Section from "../scripts/Section.js";
-import FormValidator from "../scripts/FormValidator.js";
-import Card from "../scripts/Card.js";
-import UserInfo from "../scripts/UserInfo.js";
+import PopupWithForm from "../components/PopupWithFrom.js";
+import Section from "../components/Section.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import UserInfo from "../components/UserInfo.js";
 import './index.css'; // добавьте импорт главного файла стилей 
-import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import {initialCards, formValidationConfig} from "../utils/constants.js"
 
 const formUserInfoElement = document.forms["popup-edit-form"];
@@ -97,7 +97,7 @@ const addingCardValid = new FormValidator(
   formValidationConfig,
   formAddingCardElement
 );
-//addingCardValid.enableValidation();
+addingCardValid.enableValidation();
 //addingCardValid.toggleButton();
 
 /// Валидация попапа с информацией о юзере
@@ -105,7 +105,7 @@ const profileUnfoValid = new FormValidator(
   formValidationConfig,
   formUserInfoElement
 );
-//profileUnfoValid.enableValidation();
+profileUnfoValid.enableValidation();
 //profileUnfoValid.toggleButton();
 
 
