@@ -1,7 +1,7 @@
-.popup__container_type_image{
-    background-color: transparent;
-    width: auto;
-    flex-direction: column;
-    box-shadow: none;
-    position: relative;
+.popup__container_type_image {
+  background-color: transparent;
+  width: auto;
+  flex-direction: column;
+  box-shadow: none;
+  position: relative;
 }
