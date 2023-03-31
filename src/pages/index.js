@@ -44,9 +44,9 @@ const api = new Api({
 
 api.getDataFromServer().then(([promisCard, promisUser]) => {
   userInfo.setUserInfo({
-    userName: promisUser.name,
-    userAbout: promisUser.about,
-    userAvatar: promisUser.avatar,
+    name: promisUser.name,
+    about: promisUser.about,
+    avatar: promisUser.avatar,
     userId: promisUser._id,
   });
   cardsContainer.renderItems(promisCard);
@@ -54,11 +54,11 @@ api.getDataFromServer().then(([promisCard, promisUser]) => {
 
 const profilePopup = new PopupWithForm(popupUser, ({ userName, userAbout }) => {
   profilePopup.loading(true);
-  //userInfo.setUserInfo({userName, userAbout})
   api
     .updateUserInfo({ name: userName, about: userAbout })
     .then((data) => {
-      userInfo.fixUserInfo({ userName: data.name, userAbout: data.about });
+      userInfo.setUserInfo(data);
+      profilePopup.close()
     }).catch(err => console.log(err))
     .finally(() => {
       profilePopup.loading(false);
@@ -67,12 +67,11 @@ const profilePopup = new PopupWithForm(popupUser, ({ userName, userAbout }) => {
 
 const setNewAvatarPopup = new PopupWithForm(popupAvatar, (avatarLink) => {
   setNewAvatarPopup.loading(true);
-  //console.log(avatarLink)
   api
     .setUserAvatar(avatarLink)
     .then((data) => {
-      userInfo.setNewUserAvatar(data.avatar);
-      console.log({ userAvatar: data.avatar });
+      userInfo.setUserInfo(data);
+      setNewAvatarPopup.close()
     }).catch(err => console.log(err))
     .finally(() => {
       setNewAvatarPopup.loading(false);
@@ -144,11 +143,14 @@ const popupAddCard = new PopupWithForm(popupAdd, ({cardName, cardLink})=>{
 */
 
 const popupAddCard = new PopupWithForm(popupAdd, (formData) => {
-  console.log(formData);
+  popupAddCard.loading(true)
   api.addNewCard(formData).then((newCard) => {
-    console.log(newCard);
+    popupAddCard.close()
     cardsContainer.prependItems(createCard(newCard));
-  }).catch(err => console.log(err));
+  }).catch(err => console.log(err))
+  .finally(() => {
+    popupAddCard.loading(false);
+  });;
 });
 popupAddCard.setEventListener();
 
@@ -167,7 +169,6 @@ const cardsContainer = new Section(
 
 function callbackForAddPopupButton() {
   addingCardValid.resetValid();
-  addingCardValid.enableValidation();
   popupAddCard.open();
 }
 
@@ -179,7 +180,6 @@ popupAddButtonElement.addEventListener("click", callbackForAddPopupButton);
 function callbackForProfilePopupButton() {
   profileUnfoValid.resetValid();
   profilePopup.setInputValues(userInfo.getUserInfo());
-  profileUnfoValid.enableValidation();
   profilePopup.open();
 }
 
